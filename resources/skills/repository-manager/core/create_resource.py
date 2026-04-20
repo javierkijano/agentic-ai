@@ -90,7 +90,11 @@ This skill requires the following credentials to function correctly.
     with open(os.path.join(base_path, "README.md"), "w") as f:
         f.write(f"# {res_id.replace('-', ' ').title()}\n\nDescription for {res_id}.\n")
         
-    log_operation("create_resource", "SUCCESS", f"Created {res_type}/{res_id} with Credentials Contract")
+    # Generate initial infra
+    from generate_infra import generate_infra
+    generate_infra(base_path)
+    
+    log_operation("create_resource", "SUCCESS", f"Created {res_type}/{res_id} with Storage, Credentials and Infra")
     print(f"SUCCESS: Created resource '{res_id}' with standardized Credentials section.")
 
 if __name__ == "__main__":

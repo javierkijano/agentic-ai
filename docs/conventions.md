@@ -14,7 +14,8 @@ Each resource in `resources/<type>/<id>/` should follow this general layout:
     logic/         # Reusable business logic
     cli/           # CLI entrypoints and command definitions
     webapp/        # Web-based management interface
-  tests/           # Validation tests for the resource
+    infra/         # Infrastructure files (Dockerfile, requirements.txt, etc.)
+    docs/          # Internal documentation (STORAGE.md, CREDENTIALS.md)
   platforms/       # Platform-specific overlays (e.g., platforms/hermes/SKILL.md)
 ```
 
