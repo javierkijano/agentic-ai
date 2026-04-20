@@ -1,9 +1,17 @@
 id: repository-manager
 kind: skill
 status: active
-description: Meta-skill to manage, validate, build, and navigate the entire Agentic Resources repository.
-tags: [meta, management, devops, navigation, documentation]
-platforms: [hermes, generic]
+description: Meta-skill to manage, validate, build, and navigate the entire Agentic
+  Resources repository.
+tags:
+- meta
+- management
+- devops
+- navigation
+- documentation
+platforms:
+- hermes
+- generic
 interfaces:
   cli:
     enabled: true
@@ -24,5 +32,9 @@ storage:
 credentials: []
 dependencies:
   resources: []
-  system: [{id: python, version: '>=3.10'}]
+  system:
+  - id: python
+    version: '>=3.10'
   packages: []
+dependents:
+- all-agents

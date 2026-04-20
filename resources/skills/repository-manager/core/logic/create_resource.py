@@ -56,7 +56,8 @@ def create_resource(res_type, res_id):
             "resources": [],
             "system": [{"id": "python", "version": ">=3.10"}],
             "packages": []
-        }
+        },
+        "dependents": []
     }
     
     with open(os.path.join(base_path, "resource.yaml"), "w") as f:

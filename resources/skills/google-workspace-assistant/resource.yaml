@@ -43,3 +43,4 @@ dependencies:
     name: google-api-python-client
   - manager: pip
     name: google-auth-oauthlib
+dependents: []

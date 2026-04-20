@@ -34,3 +34,7 @@ dependencies:
   packages:
   - manager: pip
     name: playwright
+dependents:
+- x-remote-control
+- linkedin
+- google-workspace-assistant

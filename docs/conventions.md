@@ -38,6 +38,7 @@ Every resource must include a `resource.yaml` with at least the following fields
         - `manager`: (e.g., `pip`, `npm`, `cargo`)
         - `name`: Package name
         - `version`: Optional version constraint
+- `dependents`: List of internal resource IDs that potentially depend on or consume this resource (e.g., `[linkedin, x-remote-control]`)
 
 ## Naming Standards
 
