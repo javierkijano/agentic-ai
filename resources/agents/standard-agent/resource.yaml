@@ -6,3 +6,17 @@ derived_from: null
 tags: []
 platforms: []
 depends_on: []
+interfaces:
+  cli:
+    enabled: true
+    commands:
+      status: Check status
+      exec: Execute
+  webapp:
+    enabled: false
+    port: null
+    entrypoint: app.py
+storage:
+  standard_layout: true
+  description: Standardized runtime storage
+  contract: core/docs/STORAGE.md

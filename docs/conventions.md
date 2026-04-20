@@ -10,7 +10,10 @@ Each resource in `resources/<type>/<id>/` should follow this general layout:
 <id>/
   resource.yaml    # Mandatory metadata
   README.md        # Documentation for the resource
-  core/            # Main logic, prompts, or data
+  core/
+    logic/         # Reusable business logic
+    cli/           # CLI entrypoints and command definitions
+    webapp/        # Web-based management interface
   tests/           # Validation tests for the resource
   platforms/       # Platform-specific overlays (e.g., platforms/hermes/SKILL.md)
 ```
@@ -22,8 +25,9 @@ Every resource must include a `resource.yaml` with at least the following fields
 - `id`: Unique identifier (e.g., `git-helper`)
 - `kind`: Type of resource (e.g., `skill`, `agent`, `workflow`)
 - `status`: Lifecycle state (e.g., `draft`, `active`, `deprecated`)
-- `source`: URL or path to original source (if applicable)
-- `derived_from`: ID of the resource this was branched from (if applicable)
+- `interfaces`: 
+    - `cli`: Command mapping and status (enabled/disabled)
+    - `webapp`: Web configuration (port, entrypoint, enabled)
 - `tags`: List of descriptive tags
 - `platforms`: List of supported platforms (e.g., `[hermes, albert]`)
 - `depends_on`: List of other resource IDs required

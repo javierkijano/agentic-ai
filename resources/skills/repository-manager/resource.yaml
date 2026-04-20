@@ -2,6 +2,25 @@ id: repository-manager
 kind: skill
 status: active
 description: Capability to manage, validate, and build the agentic resources repository.
-tags: [meta, management, devops]
-platforms: [hermes, generic]
+tags:
+- meta
+- management
+- devops
+platforms:
+- hermes
+- generic
 depends_on: []
+interfaces:
+  cli:
+    enabled: true
+    commands:
+      status: Check status
+      exec: Execute
+  webapp:
+    enabled: false
+    port: null
+    entrypoint: app.py
+storage:
+  standard_layout: true
+  description: Standardized runtime storage
+  contract: core/docs/STORAGE.md

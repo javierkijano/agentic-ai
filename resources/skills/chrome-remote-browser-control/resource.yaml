@@ -1,7 +1,27 @@
 id: chrome-remote-browser-control
 kind: skill
 status: active
-description: Control Google Chrome via CDP (Chrome DevTools Protocol) for automation and browsing.
-tags: [chrome, browser, automation, cdp]
-platforms: [hermes]
+description: Control Google Chrome via CDP (Chrome DevTools Protocol) for automation
+  and browsing.
+tags:
+- chrome
+- browser
+- automation
+- cdp
+platforms:
+- hermes
 depends_on: []
+interfaces:
+  cli:
+    enabled: true
+    commands:
+      status: Check status
+      exec: Execute
+  webapp:
+    enabled: false
+    port: null
+    entrypoint: app.py
+storage:
+  standard_layout: true
+  description: Standardized runtime storage
+  contract: core/docs/STORAGE.md

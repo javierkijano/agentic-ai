@@ -2,6 +2,25 @@ id: linkedin
 kind: skill
 status: active
 description: Manage LinkedIn interactions, post updates, and research profiles.
-tags: [linkedin, social-media, networking, automation]
-platforms: [hermes]
+tags:
+- linkedin
+- social-media
+- networking
+- automation
+platforms:
+- hermes
 depends_on: []
+interfaces:
+  cli:
+    enabled: true
+    commands:
+      status: Check status
+      exec: Execute
+  webapp:
+    enabled: false
+    port: null
+    entrypoint: app.py
+storage:
+  standard_layout: true
+  description: Standardized runtime storage
+  contract: core/docs/STORAGE.md

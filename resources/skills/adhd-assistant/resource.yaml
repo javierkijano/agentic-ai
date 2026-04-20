@@ -1,9 +1,30 @@
 id: adhd-assistant
 kind: skill
 status: active
-description: |
-  Unified ADHD-native operating system. Data-driven policies, pluggable
+description: 'Unified ADHD-native operating system. Data-driven policies, pluggable
+
   channels, separated config vs state, mode overlays, hindsight queue.
-tags: [adhd, productivity, health, life-management]
-platforms: [hermes]
+
+  '
+tags:
+- adhd
+- productivity
+- health
+- life-management
+platforms:
+- hermes
 depends_on: []
+interfaces:
+  cli:
+    enabled: true
+    commands:
+      status: Check status
+      exec: Execute
+  webapp:
+    enabled: false
+    port: null
+    entrypoint: app.py
+storage:
+  standard_layout: true
+  description: Standardized runtime storage
+  contract: core/docs/STORAGE.md

@@ -2,6 +2,25 @@ id: x-remote-control
 kind: skill
 status: active
 description: Control X (formerly Twitter) account, post tweets, and monitor interactions.
-tags: [x, twitter, social-media, automation]
-platforms: [hermes]
+tags:
+- x
+- twitter
+- social-media
+- automation
+platforms:
+- hermes
 depends_on: []
+interfaces:
+  cli:
+    enabled: true
+    commands:
+      status: Check status
+      exec: Execute
+  webapp:
+    enabled: false
+    port: null
+    entrypoint: app.py
+storage:
+  standard_layout: true
+  description: Standardized runtime storage
+  contract: core/docs/STORAGE.md

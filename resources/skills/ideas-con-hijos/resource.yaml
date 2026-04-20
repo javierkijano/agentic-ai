@@ -2,6 +2,25 @@ id: ideas-con-hijos
 kind: skill
 status: active
 description: Catalog and webapp to manage creative ideas and activities for children.
-tags: [parenting, creativity, kids, catalog]
-platforms: [hermes]
+tags:
+- parenting
+- creativity
+- kids
+- catalog
+platforms:
+- hermes
 depends_on: []
+interfaces:
+  cli:
+    enabled: true
+    commands:
+      status: Check status
+      exec: Execute
+  webapp:
+    enabled: false
+    port: null
+    entrypoint: app.py
+storage:
+  standard_layout: true
+  description: Standardized runtime storage
+  contract: core/docs/STORAGE.md
