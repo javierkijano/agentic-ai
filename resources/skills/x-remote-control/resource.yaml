@@ -33,5 +33,11 @@ credentials:
   type: secret
   description: Authentication cookie (auth_token) for X if browser is not pre-authenticated
   required: false
-depends_on:
-- chrome-remote-browser-control
+dependencies:
+  resources:
+  - chrome-remote-browser-control
+  - chrome-remote-browser-control
+  system:
+  - id: python
+    version: '>=3.10'
+  packages: []

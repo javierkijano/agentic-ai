@@ -30,7 +30,13 @@ Every resource must include a `resource.yaml` with at least the following fields
     - `webapp`: Web configuration (port, entrypoint, enabled)
 - `tags`: List of descriptive tags
 - `platforms`: List of supported platforms (e.g., `[hermes, albert]`)
-- `depends_on`: List of other resource IDs required
+- `dependencies`:
+    - `resources`: List of internal resource IDs (e.g., `[chrome-remote-browser-control]`)
+    - `system`: List of OS-level requirements (e.g., `[python >= 3.10, google-chrome]`)
+    - `packages`: List of package manager requirements:
+        - `manager`: (e.g., `pip`, `npm`, `cargo`)
+        - `name`: Package name
+        - `version`: Optional version constraint
 
 ## Naming Standards
 

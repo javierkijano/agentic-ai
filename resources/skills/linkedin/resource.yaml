@@ -33,4 +33,9 @@ credentials:
   type: string
   description: The default profile ID to use in the memory system
   required: false
-depends_on: []
+dependencies:
+  resources: []
+  system:
+  - id: python
+    version: '>=3.10'
+  packages: []

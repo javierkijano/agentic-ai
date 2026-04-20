@@ -9,7 +9,6 @@ tags:
 - catalog
 platforms:
 - hermes
-depends_on: []
 interfaces:
   cli:
     enabled: true
@@ -25,3 +24,9 @@ storage:
   description: Standardized runtime storage
   contract: core/docs/STORAGE.md
 credentials: []
+dependencies:
+  resources: []
+  system:
+  - id: python
+    version: '>=3.10'
+  packages: []

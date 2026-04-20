@@ -1,9 +1,17 @@
 id: repository-navigator
 kind: skill
 status: active
-description: Expert system to navigate, discover, and understand the repository resources and architecture.
-tags: [meta, navigation, expert, discovery, onboarding]
-platforms: [hermes, generic]
+description: Expert system to navigate, discover, and understand the repository resources
+  and architecture.
+tags:
+- meta
+- navigation
+- expert
+- discovery
+- onboarding
+platforms:
+- hermes
+- generic
 interfaces:
   cli:
     enabled: true
@@ -20,4 +28,9 @@ storage:
   description: Standardized runtime storage
   contract: core/docs/STORAGE.md
 credentials: []
-depends_on: []
+dependencies:
+  resources: []
+  system:
+  - id: python
+    version: '>=3.10'
+  packages: []
