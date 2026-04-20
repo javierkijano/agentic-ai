@@ -1,20 +1,18 @@
 id: repository-manager
 kind: skill
 status: active
-description: Capability to manage, validate, and build the agentic resources repository.
-tags:
-- meta
-- management
-- devops
-platforms:
-- hermes
-- generic
+description: Meta-skill to manage, validate, build, and navigate the entire Agentic Resources repository.
+tags: [meta, management, devops, navigation, documentation]
+platforms: [hermes, generic]
 interfaces:
   cli:
     enabled: true
     commands:
-      status: Check status
-      exec: Execute
+      console: Open the interactive command center (menu.py)
+      validate: Check repository integrity
+      create: Create new resources
+      build: Build platform distributions
+      describe: Generate commit messages
   webapp:
     enabled: false
     port: null
@@ -26,7 +24,5 @@ storage:
 credentials: []
 dependencies:
   resources: []
-  system:
-  - id: python
-    version: '>=3.10'
+  system: [{id: python, version: '>=3.10'}]
   packages: []
