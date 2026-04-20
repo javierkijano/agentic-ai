@@ -3,7 +3,9 @@ import os
 import yaml
 import sys
 import subprocess
+import pathlib
 from logger import log_operation
+from security_scanner import SecurityScanner
 
 def validate_layout():
     expected_dirs = [
@@ -70,6 +72,23 @@ def validate_resources():
         print("SUCCESS: All resources validated.")
     return valid
 
+def check_security():
+    print("--- Running Security Scan (PII & Secrets) ---")
+    # Resolve repo root (manager/core/logic/validate_repo.py -> root)
+    repo_root = pathlib.Path(__file__).parent.parent.parent.parent.parent
+    scanner = SecurityScanner(repo_root)
+    findings = scanner.run_full_scan()
+    
+    if findings:
+        print(f"CRITICAL: {len(findings)} potential security risks detected!")
+        for f in findings:
+            print(f"  [!] {f['type']} in {f['file']}:{f['line']} -> {f['finding']}")
+        log_operation("validate_repo", "SECURITY_ALERT", f"Found {len(findings)} risks")
+        return False
+    
+    print("SUCCESS: No security risks detected.")
+    return True
+
 def check_hygiene():
     suggestions = []
     
@@ -121,14 +140,15 @@ def main():
     print("--- Validating Agentic Resources Repository ---")
     layout_ok = validate_layout()
     resources_ok = validate_resources()
+    security_ok = check_security()
     check_hygiene()
     
-    if layout_ok and resources_ok:
+    if layout_ok and resources_ok and security_ok:
         log_operation("validate_repo", "SUCCESS", "Full validation passed")
     else:
         log_operation("validate_repo", "FAILURE", "Validation failed")
     
-    if not (layout_ok and resources_ok):
+    if not (layout_ok and resources_ok and security_ok):
         sys.exit(1)
     print("\n--- Validation Complete ---")
 

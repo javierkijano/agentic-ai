@@ -34,6 +34,7 @@ def main_menu():
         print("[4] GESTIÓN: Crear recurso o Generar Infra")
         print("[5] GIT: Preparar mensaje de commit")
         print("[6] CURACIÓN: Analizar y consolidar TODOs")
+        print("[7] SEGURIDAD: Auditoría de Secretos y PII")
         print("\n[0] SALIR")
         
         choice = input("\nSeleccione una opción: ")
@@ -123,6 +124,25 @@ def main_menu():
                 print("\n".join(report.splitlines()[:20])) # Primeras 20 líneas
             except ImportError:
                 print("Error: No se pudo cargar la lógica del curador.")
+            input("\nPresione Enter para volver...")
+
+        elif choice == '7':
+            clear_screen()
+            print("--- AUDITORÍA DE SEGURIDAD (PII & SECRETS) ---")
+            try:
+                from security_scanner import SecurityScanner
+                scanner = SecurityScanner(repo_root)
+                print("Escaneando todo el repositorio (esto puede tardar)...")
+                findings = scanner.run_full_scan()
+                if findings:
+                    print(f"\nALERTA: Se han encontrado {len(findings)} posibles riesgos:")
+                    for f in findings:
+                        print(f"  [!] {f['type']} -> {f['file']}:{f['line']}")
+                    print("\nRECOMENDACIÓN: Mueve estos secretos a archivos en runtime/config o usa variables de entorno.")
+                else:
+                    print("\nSUCCESS: No se han detectado secretos ni PII en el código.")
+            except ImportError:
+                print("Error: No se pudo cargar el motor de seguridad.")
             input("\nPresione Enter para volver...")
 
         elif choice == '0':

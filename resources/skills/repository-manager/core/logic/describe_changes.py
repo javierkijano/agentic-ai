@@ -2,6 +2,8 @@
 import subprocess
 import os
 import sys
+import pathlib
+from security_scanner import SecurityScanner
 
 def get_git_status():
     try:
@@ -75,6 +77,33 @@ if __name__ == "__main__":
         print("No staged changes found. Use 'git add' first.")
         sys.exit(0)
         
+    # Security Check before generating message
+    repo_root = pathlib.Path(__file__).parent.parent.parent.parent.parent
+    scanner = SecurityScanner(repo_root)
+    findings = []
+    
+    # Solo escaneamos los archivos en el staging
+    for line in staged:
+        if not line: continue
+        parts = line.split(None, 1)
+        if len(parts) < 2: continue
+        status, path = parts
+        if status != 'D': # No escanear borrados
+            f_path = repo_root / path
+            if f_path.exists():
+                findings.extend(scanner.scan_file(f_path))
+
+    if findings:
+        print("\n" + "!"*60)
+        print("CRITICAL SECURITY WARNING: POTENTIAL SECRETS DETECTED IN STAGING")
+        print("!"*60)
+        for f in findings:
+            print(f"  [!] {f['type']} in {f['file']}:{f['line']}")
+        
+        print("\n[SECURITY BLOCK] Please remove secrets before committing.")
+        print("If you are ABSOLUTELY sure, use 'git commit' directly to bypass this tool.")
+        sys.exit(2)
+
     summary = group_changes(staged)
     print("\n--- Suggested Commit Message ---")
     print("--------------------------------")
