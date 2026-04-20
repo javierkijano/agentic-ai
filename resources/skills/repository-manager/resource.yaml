@@ -1,0 +1,7 @@
+id: repository-manager
+kind: skill
+status: active
+description: Capability to manage, validate, and build the agentic resources repository.
+tags: [meta, management, devops]
+platforms: [hermes, generic]
+depends_on: []
