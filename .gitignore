@@ -3,6 +3,7 @@
 # Distribution
 dist/
 runtime/
+*.local.*
 
 # Python
 __pycache__/
