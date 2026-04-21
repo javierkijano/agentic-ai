@@ -3,11 +3,13 @@ kind: workflow
 status: active
 description: Orquestación de actualización de documentación para recursos.
 steps:
-  - id: update_readme
-    skill: resources-repo-manager
-    command: generate-docs --target readme
-  - id: update_registry
-    skill: resources-repo-manager
-    command: sync --registry index
-  - id: notify_dependents
-    shell: echo "Notificando a recursos dependientes..."
+  - id: readme_update
+    intent: "Actualizar el archivo README principal del recurso"
+    associations:
+      - tool: resources-repo-manager
+        strength: 1.0
+  - id: registry_sync
+    intent: "Sincronizar el registro global de recursos"
+    associations:
+      - tool: resources-repo-manager
+        strength: 1.0

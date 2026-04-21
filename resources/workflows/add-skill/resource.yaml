@@ -4,12 +4,17 @@ status: active
 description: Proceso completo de creación y registro de una nueva skill.
 steps:
   - id: check_naming_convention
-    skill: resources-repo-manager
-    command: validate --check-naming
+    intent: "Validar que el nombre sigue la convención del canon"
+    associations:
+      - tool: resources-repo-manager
+        strength: 1.0
   - id: create_structure
-    skill: resources-repo-manager
-    command: create --type skill
+    intent: "Crear la estructura de carpetas y archivos base"
+    associations:
+      - tool: resources-repo-manager
+        strength: 1.0
   - id: finalize_docs
-    workflow: update-docs  # AQUÍ ESTÁ EL ANIDAMIENTO
-  - id: log_session
-    shell: echo "Registrando creación de skill en session_registry.jsonl"
+    intent: "Asegurar que toda la documentación técnica esté completa"
+    associations:
+      - workflow: update-docs
+        strength: 1.0
