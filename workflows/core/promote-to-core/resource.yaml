@@ -2,6 +2,7 @@ id: promote-to-core
 kind: workflow
 status: core
 description: Mueve un workflow verificado desde el entorno de desarrollo (dev) al canon oficial (core).
+utility_score: 0
 
 preconditions:
   - "El workflow existe en workflows/dev/"

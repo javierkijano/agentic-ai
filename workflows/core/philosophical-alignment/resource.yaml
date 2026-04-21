@@ -2,6 +2,7 @@ id: philosophical-alignment
 kind: workflow
 status: core
 description: Auditoría profunda de alineación entre la arquitectura real y los principios fundacionales del ecosistema.
+utility_score: 90
 
 preconditions:
   - "Los manifiestos en docs/architecture.md y protocols/git-workflow.md son accesibles"

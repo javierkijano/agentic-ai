@@ -2,6 +2,7 @@ id: workflow-discovery
 kind: workflow
 status: dev
 description: Minería de procesos y descubrimiento de nuevos workflows a partir del historial operativo y memoria del sistema.
+utility_score: 40
 
 preconditions:
   - "Acceso al historial de sesiones (session_history)"

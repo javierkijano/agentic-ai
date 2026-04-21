@@ -2,6 +2,7 @@ id: system-bootstrap
 kind: workflow
 status: core
 description: Orquestación de la configuración inicial del ecosistema Agentic AI.
+utility_score: 95
 
 preconditions:
   - "Los repositorios de Resources y Workspace están clonados localmente"

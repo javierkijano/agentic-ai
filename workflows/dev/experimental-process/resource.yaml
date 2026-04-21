@@ -2,6 +2,7 @@ id: experimental-process
 kind: workflow
 status: dev
 description: Un proceso de prueba para validar la promoción.
+utility_score: 0
 steps:
   - id: test_step
     intent: "Hacer algo experimental"

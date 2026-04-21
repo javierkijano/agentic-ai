@@ -2,6 +2,7 @@ id: cortex-documentation
 kind: workflow
 status: core
 description: Generación de documentación técnica para el motor de ejecución y planificación (Cortex).
+utility_score: 0
 preconditions:
   - "El código de engine.py y las skills del cortex están presentes"
 postconditions:

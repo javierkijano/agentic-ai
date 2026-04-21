@@ -2,6 +2,7 @@ id: skills-canon-promotion
 kind: workflow
 status: core
 description: Protocolo oficial para la promoción de una Skill validada al Canon de Recursos.
+utility_score: 85
 
 preconditions:
   - "La Skill reside en el Workspace o en la carpeta experimental de Recursos"

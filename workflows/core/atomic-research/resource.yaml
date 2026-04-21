@@ -2,6 +2,7 @@ id: atomic-research
 kind: workflow
 status: core
 description: Búsqueda sistemática de información con contexto de dominio pre-definido.
+utility_score: 0
 
 preconditions:
   - "El dominio de investigación (query) ha sido desambiguado y validado"

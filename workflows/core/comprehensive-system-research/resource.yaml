@@ -2,6 +2,7 @@ id: comprehensive-system-research
 kind: workflow
 status: core
 description: Orquestación de investigación exhaustiva y recursiva en todo el ecosistema.
+utility_score: 80
 
 preconditions:
   - "El motor de investigación (researcher.py) está disponible"

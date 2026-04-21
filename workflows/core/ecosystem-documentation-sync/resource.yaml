@@ -2,6 +2,7 @@ id: ecosystem-documentation-sync
 kind: workflow
 status: core
 description: Sincronización total de la documentación del ecosistema con la realidad arquitectónica.
+utility_score: 75
 preconditions:
   - "Acceso a todos los dominios funcionales en skills/"
   - "Acceso a las carpetas core/ y dev/ en workflows/"
