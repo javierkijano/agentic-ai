@@ -1,0 +1,24 @@
+id: system-evolutionary-brainstorming
+kind: workflow
+status: core
+description: Proceso proactivo de ideación y destilación de mejoras basado en el contexto de la sesión y memorias históricas.
+utility_score: 100
+
+steps:
+  - id: thematic_extraction
+    intent: "Identificar temas clave, fricciones sutiles y patrones recurrentes en los logs y memorias"
+    associations: [{tool: cortex-evaluator, strength: 1.0}]
+
+  - id: divergent_ideation
+    intent: "Generar ideas disruptivas y 'a lo loco' para evolucionar el sistema basándose en los temas detectados"
+    associations: [{tool: cortex-planner, strength: 1.0}]
+
+  - id: convergent_evaluation
+    intent: "Filtrar ideas mediante una matriz de Impacto vs Esfuerzo y categorizarlas"
+    validation:
+      output_schema: "ImprovementProposal"
+    associations: [{tool: cortex-evaluator, strength: 1.0}]
+
+  - id: backlog_promotion
+    intent: "Registrar las propuestas ganadoras en la cola de mejoras con links a la discusión original"
+    associations: [{tool: repo-management, strength: 1.0}]
