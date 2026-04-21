@@ -9,19 +9,14 @@ package ecosystem
     interfaces: {
         cli?: {
             enabled: bool
-            commands: {
-                [string]: string
-            }
+            commands: { [string]: string }
         }
         api?: {
             enabled: bool
-            endpoints: {
-                [string]: string
-            }
+            endpoints: { [string]: string }
         }
     }
     
-    // Punteros a esquemas de validación de datos
     input_schema?: string
     output_schema?: string
     
@@ -29,11 +24,5 @@ package ecosystem
         standard_layout: bool
         description?: string
         contract?: string
-    }
-    
-    dependencies?: {
-        resources?: [...string]
-        system?: [...{id: string, version: string}]
-        packages?: [...string]
     }
 }

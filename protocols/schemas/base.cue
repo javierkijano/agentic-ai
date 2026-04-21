@@ -4,4 +4,5 @@ package ecosystem
 #Metadata: {
     id: string
     description: string
+    ... // Apertura controlada para permitir herencia aditiva
 }

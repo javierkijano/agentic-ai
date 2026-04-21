@@ -15,6 +15,7 @@ package ecosystem
         owner: string
         description?: string
     }
+    ... // Apertura para flexibilidad en validaciones parciales de estado
     links?: {
         resources?: {
             path: string

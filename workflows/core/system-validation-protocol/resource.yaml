@@ -1,0 +1,24 @@
+id: system-validation-protocol
+kind: workflow
+status: core
+description: Protocolo obligatorio de validación multi-perspectiva para cambios estructurales en el sistema.
+utility_score: 100
+
+steps:
+  - id: strategic_test_design
+    intent: "Diseñar un plan de pruebas que cubra al menos 3 ángulos: Estructural (CUE), Casos de Borde (Edge cases) y Regresión Funcional."
+    associations: [{tool: cortex-planner, strength: 1.0}]
+
+  - id: structural_compliance_test
+    intent: "Verificar que los contratos CUE bloquean datos inválidos y permiten datos válidos complejos"
+    validation:
+      input_schema: "Workflow"
+    associations: [{tool: step-executor, strength: 1.0}]
+
+  - id: cross_reference_audit
+    intent: "Asegurar que no hay referencias rotas entre schemas y que el motor resuelve todo el paquete CUE"
+    associations: [{tool: repo-management, strength: 1.0}]
+
+  - id: manifest_integrity_check
+    intent: "Validar que el Manifiesto de Cumplimiento generado es veraz y útil para el diagnóstico"
+    associations: [{tool: cortex-evaluator, strength: 1.0}]
