@@ -1,0 +1,54 @@
+id: workflow-discovery
+kind: workflow
+status: dev
+description: Minería de procesos y descubrimiento de nuevos workflows a partir del historial operativo y memoria del sistema.
+
+preconditions:
+  - "Acceso al historial de sesiones (session_history)"
+  - "Acceso a los logs de trazabilidad (session_registry.jsonl)"
+  - "Acceso a los paquetes de memoria (memory-packs)"
+
+postconditions:
+  - "Lista de procesos candidatos identificados"
+  - "Identificación de patrones recursivos (procesos dentro de procesos)"
+  - "Filtrado por relevancia y unicidad (eliminación de solapamientos)"
+  - "Log de resultados generado y consulta al usuario emitida"
+
+steps:
+  - id: source_mining
+    intent: "Escanear memoria, logs e historial para extraer secuencias de acciones exitosas"
+    associations:
+      - tool: cortex-evaluator
+        strength: 1.0
+      - tool: repo-management
+        strength: 0.5
+
+  - id: process_identification
+    intent: "Identificar y nombrar los procesos detectados a partir de las secuencias de acciones"
+    associations:
+      - tool: cortex-planner
+        strength: 1.0
+
+  - id: recursive_discovery
+    intent: "Analizar la estructura interna de los procesos para descubrir sub-procesos anidados"
+    associations:
+      - tool: cortex-planner
+        strength: 1.0
+
+  - id: overlap_filtering
+    intent: "Detectar y descartar procesos con alto solapamiento o redundancia"
+    associations:
+      - tool: workflow-selector
+        strength: 1.0
+
+  - id: consistency_check
+    intent: "Verificar que la lista filtrada es consistente con las necesidades del sistema"
+    associations:
+      - tool: cortex-evaluator
+        strength: 1.0
+
+  - id: output_and_consultation
+    intent: "Listar candidatos finales, loguear el resultado y preguntar al usuario por la implementación"
+    associations:
+      - tool: general-utilities
+        strength: 1.0
