@@ -1,12 +1,19 @@
 id: add-skill
 kind: workflow
 status: core
-utility_score: 90
 description: "Crea una nueva skill siguiendo el estándar del canon"
+utility_score: 90
+
 steps:
   - id: init_structure
     intent: "Crear carpetas y archivos base"
-    associations: [{tool: repo-management, strength: 1.0}]
+    validation:
+      output_schema: "Skill" # Validará que la nueva estructura sea válida
+    associations:
+      - tool: repo-management
+        strength: 1.0
   - id: finalize_docs
     intent: "Sincronizar documentación"
-    associations: [{workflow: ecosystem-documentation-sync, strength: 1.0}]
+    associations:
+      - workflow: ecosystem-documentation-sync
+        strength: 1.0

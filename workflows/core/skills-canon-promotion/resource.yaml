@@ -4,20 +4,24 @@ status: core
 description: Protocolo oficial para la promoción de una Skill validada al Canon de Recursos.
 utility_score: 85
 
+# Validación de Estado Global (Workspace)
+state_validation:
+  pre_state_schema: "Topology"
+  post_state_schema: "Topology"
+
 preconditions:
   - "La Skill reside en el Workspace o en la carpeta experimental de Recursos"
   - "El archivo resource.yaml de la Skill es válido y completo"
-  - "No existen conflictos de ID con Skills ya existentes en el Canon"
 
 postconditions:
   - "La Skill ha sido movida físicamente a la raíz de skills/ del Canon"
   - "El status de la Skill ha sido actualizado a 'active' o 'core'"
-  - "La Skill es visible para el WorkflowSelector y el Navigator"
-  - "Se ha registrado la promoción en el log de trazabilidad"
 
 steps:
   - id: integrity_validation
     intent: "Validar que la Skill cumple con el estándar de estructura y contrato YAML"
+    validation:
+      output_schema: "Skill" # Validará contra #Skill en skill.cue
     associations:
       - tool: repo-management
         strength: 1.0

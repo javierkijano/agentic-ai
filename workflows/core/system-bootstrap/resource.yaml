@@ -4,6 +4,10 @@ status: core
 description: Orquestación de la configuración inicial del ecosistema Agentic AI.
 utility_score: 95
 
+# Validación de Estado Final
+state_validation:
+  post_state_schema: "Topology"
+
 preconditions:
   - "Los repositorios de Resources y Workspace están clonados localmente"
   - "El Agente tiene permisos de escritura en la carpeta config/ del Workspace"
@@ -11,31 +15,32 @@ preconditions:
 postconditions:
   - "Archivo config/paths.yaml generado con las rutas correctas"
   - "Archivo config/topology.yaml inicializado"
-  - "Conectividad entre Workspace y Canon verificada satisfactoriamente"
 
 steps:
   - id: detect_environment
-    intent: "Localizar las rutas absolutas de los repositorios en el sistema de archivos actual"
+    intent: "Localizar las rutas absolutas de los repositorios"
     associations:
       - tool: workspace-repo-manager
         strength: 1.0
 
   - id: path_configuration
-    intent: "Generar el archivo paths.yaml vinculando el Workspace con el Canon de Recursos"
+    intent: "Generar el archivo paths.yaml"
+    validation:
+      output_schema: "Paths" # Validará contra #Paths en workspace.cue
     associations:
       - tool: workspace-repo-manager
         strength: 1.0
 
   - id: topology_initialization
-    intent: "Crear una estructura base de proyectos en topology.yaml si no existe"
+    intent: "Crear estructura base en topology.yaml"
+    validation:
+      output_schema: "Topology" # Validará contra #Topology en workspace.cue
     associations:
       - tool: workspace-repo-manager
         strength: 1.0
 
   - id: connectivity_test
-    intent: "Verificar que el Navigator puede leer recursos del Canon desde el Workspace"
+    intent: "Verificar conectividad entre Workspace y Canon"
     associations:
       - tool: workspace-repo-manager
         strength: 1.0
-      - tool: repo-management
-        strength: 0.5
