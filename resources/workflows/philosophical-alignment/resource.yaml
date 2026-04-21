@@ -1,0 +1,30 @@
+id: philosophical-alignment
+kind: workflow
+status: active
+description: Proceso de Meta-Gobernanza para auditar la alineación entre la arquitectura real y los principios fundacionales.
+tags:
+  - '#meta-governance'
+  - '#audit'
+  - '#philosophy'
+steps:
+  - id: read_architecture_manifesto
+    shell: echo "Cargando Principios Arquitectónicos desde docs/architecture.md..."
+    # En un motor más avanzado, esto inyectaría el contenido en el contexto del LLM.
+
+  - id: read_git_workflow_protocol
+    shell: echo "Cargando Protocolo Git (Worktrees) desde protocols/git-workflow.md..."
+
+  - id: scan_workspace_topology
+    skill: resources-repo-manager
+    command: explore --target workspace
+    # Simula la lectura del topology.yaml para ver si los proyectos existen.
+
+  - id: detect_conceptual_drift
+    shell: echo "Analizando diferencias entre el estado actual y los principios (Conceptual Drift Analysis)..."
+    # El LLM utiliza el contexto cargado para generar un informe.
+
+  - id: generate_remediation_plan
+    shell: echo "Generando Plan de Remediación (Actionable Steps)..."
+
+  - id: log_audit_session
+    shell: echo "Registrando auditoría filosófica en runtime/session_registry.jsonl"
