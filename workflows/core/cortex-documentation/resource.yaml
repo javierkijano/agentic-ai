@@ -1,0 +1,20 @@
+id: cortex-documentation
+kind: workflow
+status: core
+description: Generación de documentación técnica para el motor de ejecución y planificación (Cortex).
+preconditions:
+  - "El código de engine.py y las skills del cortex están presentes"
+postconditions:
+  - "Manual técnico del Motor de Workflows generado"
+  - "Guía de diseño de Workflows (Pre/Post condiciones) disponible"
+steps:
+  - id: engine_doc
+    intent: "Explicar el funcionamiento del StepExecutor y la lógica de asociaciones de fuerza"
+    associations:
+      - tool: repo-management
+        strength: 1.0
+  - id: workflow_design_guide
+    intent: "Crear una guía estándar para la creación de workflows declarativos"
+    associations:
+      - tool: repo-management
+        strength: 1.0

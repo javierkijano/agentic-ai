@@ -1,0 +1,22 @@
+id: workflow-planner
+kind: skill
+status: active
+description: Cortex skill for designing and refining step-by-step execution plans.
+tags:
+- '#cortex'
+- '#planning'
+- '#reasoning'
+platforms:
+- hermes
+interfaces:
+  cli:
+    enabled: true
+    commands:
+      plan: core/logic/planner.py
+storage:
+  standard_layout: true
+  description: Planning workspace for temporary DAGs.
+usage_guidelines:
+  preferred_scenarios:
+  - When a core workflow needs customization for a specific context.
+  - When no core workflow exists and a new 'dev' workflow must be drafted.

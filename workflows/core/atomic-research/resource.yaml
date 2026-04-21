@@ -1,0 +1,19 @@
+id: atomic-research
+kind: workflow
+status: core
+description: Búsqueda sistemática de información con contexto de dominio pre-definido.
+
+preconditions:
+  - "El dominio de investigación (query) ha sido desambiguado y validado"
+  - "Las raíces de escaneo (paths) están definidas en el contexto de la tarea"
+
+postconditions:
+  - "Se ha generado un log de hallazgos con puntuación de relevancia"
+  - "Se dispone de una lista de archivos candidatos para lectura profunda"
+
+steps:
+  - id: systematic_scan
+    intent: "Realizar escaneo recursivo buscando coincidencias semánticas y de nombre"
+    associations:
+      - tool: repo-management  # Usa la lógica interna de researcher.py
+        strength: 1.0

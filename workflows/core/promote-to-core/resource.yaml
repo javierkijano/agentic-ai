@@ -1,0 +1,34 @@
+id: promote-to-core
+kind: workflow
+status: core
+description: Mueve un workflow verificado desde el entorno de desarrollo (dev) al canon oficial (core).
+
+preconditions:
+  - "El workflow existe en workflows/dev/"
+  - "El workflow ha sido validado semánticamente por el CortexEvaluator"
+
+postconditions:
+  - "El workflow reside en workflows/core/"
+  - "El status del workflow en su resource.yaml ha sido actualizado a 'core'"
+
+steps:
+  - id: integrity_check
+    intent: "Verificar la integridad del contrato YAML del workflow"
+    associations:
+      - tool: repo-management
+        strength: 1.0
+
+  - id: physical_promotion
+    intent: "Mover el directorio del workflow a la carpeta core/"
+    associations:
+      - tool: repo-management
+        strength: 1.0
+
+  - id: status_update
+    intent: "Actualizar el campo 'status' en el resource.yaml del workflow"
+    associations:
+      - tool: repo-management
+        strength: 0.8
+
+  - id: log_promotion
+    shell: echo "Registrando promoción de workflow en el sistema de trazabilidad."

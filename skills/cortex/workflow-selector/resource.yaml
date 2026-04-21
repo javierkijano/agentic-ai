@@ -1,0 +1,22 @@
+id: workflow-selector
+kind: skill
+status: active
+description: Cortex skill for matching user objectives with workflow postconditions.
+tags:
+- '#cortex'
+- '#selection'
+- '#intent-matching'
+platforms:
+- hermes
+interfaces:
+  cli:
+    enabled: true
+    commands:
+      select: core/logic/selector.py
+storage:
+  standard_layout: true
+  description: Temporary storage for selection candidates.
+usage_guidelines:
+  preferred_scenarios:
+  - When the user goal requires a complex multi-step process.
+  - When several workflows could potentially fulfill the same goal.

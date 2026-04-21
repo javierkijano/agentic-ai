@@ -1,0 +1,21 @@
+id: cortex-evaluator
+kind: skill
+status: active
+description: Cortex skill for validating workflow results against their postconditions.
+tags:
+- '#cortex'
+- '#evaluation'
+- '#validation'
+platforms:
+- hermes
+interfaces:
+  cli:
+    enabled: true
+    commands:
+      evaluate: core/logic/evaluator.py
+storage:
+  standard_layout: true
+usage_guidelines:
+  preferred_scenarios:
+  - At the end of every workflow execution to confirm success.
+  - When deciding if a 'dev' workflow is ready for 'core' promotion.

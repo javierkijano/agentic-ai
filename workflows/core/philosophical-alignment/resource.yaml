@@ -1,0 +1,43 @@
+id: philosophical-alignment
+kind: workflow
+status: core
+description: Auditoría profunda de alineación entre la arquitectura real y los principios fundacionales del ecosistema.
+
+preconditions:
+  - "Los manifiestos en docs/architecture.md y protocols/git-workflow.md son accesibles"
+  - "La topología del workspace está definida en config/topology.yaml"
+  - "El agente tiene permisos de lectura sobre el sistema de archivos del canon y el workspace"
+
+postconditions:
+  - "Se ha identificado la deriva conceptual (Conceptual Drift) entre la implementación y la filosofía"
+  - "Existe un plan de remediación registrado en el session_registry.jsonl"
+  - "El estado de salud del ecosistema ha sido actualizado en los logs operativos"
+
+steps:
+  - id: load_theory
+    intent: "Cargar y analizar los principios de diseño y protocolos Git oficiales"
+    associations:
+      - tool: repo-management
+        strength: 1.0
+      - tool: general-utilities
+        strength: 0.3
+
+  - id: analyze_topology
+    intent: "Escanear la visibilidad de proyectos y la jerarquía de onboarding en el workspace"
+    associations:
+      - tool: repo-management
+        strength: 1.0
+
+  - id: audit_drift
+    intent: "Comparar la estructura física de carpetas y scripts contra el manifiesto teórico"
+    associations:
+      - tool: cortex-evaluator
+        strength: 1.0
+      - tool: repo-management
+        strength: 0.5
+
+  - id: plan_remediation
+    intent: "Generar una lista de acciones quirúrgicas para corregir las inconsistencias detectadas"
+    associations:
+      - tool: cortex-planner
+        strength: 1.0

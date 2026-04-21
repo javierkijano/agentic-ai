@@ -1,0 +1,25 @@
+id: comprehensive-system-research
+kind: workflow
+status: core
+description: Orquestación de investigación exhaustiva y recursiva en todo el ecosistema.
+
+preconditions:
+  - "El motor de investigación (researcher.py) está disponible"
+  - "Se ha definido un término de búsqueda (TASK_QUERY)"
+
+postconditions:
+  - "Se ha generado un log de hallazgos con puntuación de relevancia"
+  - "Se dispone de un resumen de las implicaciones para la tarea actual"
+
+steps:
+  - id: systematic_scan
+    intent: "Realizar escaneo recursivo buscando coincidencias semánticas y de nombre"
+    associations:
+      - tool: repo-management
+        strength: 1.0
+
+  - id: synthesis
+    intent: "Analizar los hallazgos y compilar un reporte de impacto"
+    associations:
+      - tool: cortex-evaluator
+        strength: 1.0

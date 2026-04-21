@@ -1,0 +1,26 @@
+id: ecosystem-documentation-sync
+kind: workflow
+status: core
+description: Sincronización total de la documentación del ecosistema con la realidad arquitectónica.
+preconditions:
+  - "Acceso a todos los dominios funcionales en skills/"
+  - "Acceso a las carpetas core/ y dev/ en workflows/"
+postconditions:
+  - "Toda la infraestructura de workflows y cortex está documentada"
+  - "El manual de onboarding global refleja los nuevos procesos"
+steps:
+  - id: cortex_sync
+    intent: "Actualizar documentación del cerebro del sistema"
+    associations:
+      - workflow: cortex-documentation
+        strength: 1.0
+  - id: inventory_refresh
+    intent: "Regenerar el catálogo de skills y workflows disponibles"
+    associations:
+      - tool: repo-management
+        strength: 1.0
+  - id: onboarding_update
+    intent: "Actualizar el AGENTS.md de Nivel 0 para incluir los nuevos procesos de workflows"
+    associations:
+      - tool: repo-management
+        strength: 1.0

@@ -1,0 +1,10 @@
+id: experimental-process
+kind: workflow
+status: dev
+description: Un proceso de prueba para validar la promoción.
+steps:
+  - id: test_step
+    intent: "Hacer algo experimental"
+    associations:
+      - tool: general-utilities
+        strength: 1.0
