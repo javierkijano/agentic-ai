@@ -1,0 +1,32 @@
+id: task-result-analysis
+kind: workflow
+status: core
+description: Analiza iteraciones fallidas para diagnosticar errores y proponer nuevos planes de acción (Loop Logic).
+utility_score: 95
+
+preconditions:
+  - "El usuario no ha aceptado el resultado o se ha reportado un error de ejecución"
+  - "El límite de iteraciones (3) no se ha superado"
+
+postconditions:
+  - "Se ha diagnosticado el error (mala comprensión, workflow incorrecto o fallo técnico)"
+  - "Se ha formulado y ejecutado una nueva estrategia de resolución"
+
+steps:
+  - id: diagnose_failure
+    intent: "Determinar por qué falló el intento anterior analizando el feedback o los logs"
+    associations:
+      - tool: cortex-evaluator
+        strength: 1.0
+
+  - id: strategize_retry
+    intent: "Seleccionar un nuevo workflow alternativo o refinar los parámetros del intento actual"
+    associations:
+      - tool: cortex-planner
+        strength: 1.0
+
+  - id: execute_retry
+    intent: "Lanzar la ejecución del plan alternativo"
+    associations:
+      - tool: step-executor
+        strength: 1.0

@@ -1,0 +1,31 @@
+id: workflow-evaluation
+kind: workflow
+status: core
+description: Recopila feedback del usuario y ajusta el utility_score de los procesos del ecosistema.
+utility_score: 90
+
+preconditions:
+  - "La tarea principal ha concluido (con éxito o tras alcanzar el límite de iteraciones)"
+
+postconditions:
+  - "El feedback del usuario ha sido procesado (explícito o inferido)"
+  - "Las métricas de los workflows implicados han sido actualizadas"
+
+steps:
+  - id: ask_feedback
+    intent: "Pedir al usuario una evaluación explícita si la tarea tuvo errores (Condicional: solo si hubo fallos previos)"
+    associations:
+      - tool: general-utilities # Fallback de comunicación
+        strength: 0.5
+
+  - id: infer_success
+    intent: "Si no hubo errores, inferir la calidad de los workflows seleccionados basándose en los logs operativos"
+    associations:
+      - tool: cortex-evaluator
+        strength: 1.0
+
+  - id: update_metrics
+    intent: "Ajustar el utility_score y registrar el rendimiento en el historial de maduración de workflows"
+    associations:
+      - tool: cortex-evaluator
+        strength: 1.0

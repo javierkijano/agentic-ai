@@ -1,0 +1,25 @@
+id: task-identification
+kind: workflow
+status: core
+description: Analiza la petición del usuario para extraer la intención y definir las postcondiciones objetivo.
+utility_score: 100
+
+preconditions:
+  - "Existe un prompt o petición del usuario no resuelta en el contexto actual"
+
+postconditions:
+  - "La intención del usuario está desambiguada"
+  - "Se han definido las postcondiciones que marcarían el éxito de la tarea"
+
+steps:
+  - id: parse_prompt
+    intent: "Extraer la intención semántica y los parámetros clave de la petición"
+    associations:
+      - tool: cortex-planner
+        strength: 1.0
+
+  - id: define_goal
+    intent: "Traducir la intención en un conjunto de postcondiciones medibles"
+    associations:
+      - tool: cortex-planner
+        strength: 1.0

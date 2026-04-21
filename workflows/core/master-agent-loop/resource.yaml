@@ -1,0 +1,44 @@
+id: master-agent-loop
+kind: workflow
+status: core
+description: Bucle principal de interacción continua y resolución iterativa de tareas del ecosistema.
+utility_score: 100
+
+preconditions:
+  - "El sistema está inicializado (system-bootstrap completado)"
+  - "El Agente está a la espera de instrucciones o procesando una nueva orden"
+
+postconditions:
+  - "La petición del usuario ha sido resuelta o se ha alcanzado el límite de intentos seguros (3)"
+  - "El ecosistema ha aprendido de la interacción mediante evaluación (actualizando utility_scores)"
+
+steps:
+  - id: analyze_user_request
+    intent: "Analizar qué tipo de petición está realizando el usuario para fijar objetivos"
+    associations:
+      - workflow: task-identification
+        strength: 1.0
+
+  - id: execute_best_solution
+    intent: "Localizar el workflow que mejor resuelve la tarea identificada y orquestarlo"
+    associations:
+      - tool: workflow-selector
+        strength: 1.0
+
+  - id: conditional_satisfaction_check
+    intent: "Verificar si el usuario aprueba el resultado o si la ejecución lanzó errores"
+    associations:
+      - tool: cortex-evaluator
+        strength: 1.0
+
+  - id: conditional_retry_loop
+    intent: "Si no gustó la solución o falló, lanzar el workflow de análisis de resultado y proponer acción (Max: 3 iteraciones)"
+    associations:
+      - workflow: task-result-analysis
+        strength: 1.0
+
+  - id: evaluate_and_learn
+    intent: "Finalizar ciclo, pedir feedback explícito si hubo errores, y evaluar los procesos utilizados"
+    associations:
+      - workflow: workflow-evaluation
+        strength: 1.0
