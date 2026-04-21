@@ -1,12 +1,11 @@
 id: resources-repo-manager
 kind: skill
 status: active
-description: Meta-skill to govern, validate, build, and navigate the Agentic Resources
-  canonical repository.
+description: Canonical Governance Manager. Responsible for resource validation, promotion protocols, and ecosystem integrity.
 tags:
 - '#governance'
-- '#management'
-- '#resources'
+- '#canon'
+- '#integrity'
 - '#contracts'
 - '#validations'
 platforms:
@@ -17,13 +16,14 @@ interfaces:
     enabled: true
     commands:
       console: Open the interactive command center (menu.py)
-      validate: Check repository integrity
-      create: Create new resources
-      build: Build platform distributions
-      describe: Generate commit messages
-  webapp:
-    enabled: false
-    port: null
+      validate: Check repository integrity and canon compliance
+      create: Create new canonical resources
+      build: Build platform distributions from canon
+      explore: core/logic/explorer.py list --scan-workspace
+storage:
+  standard_layout: true
+  description: Canonical resource storage
+
     entrypoint: app.py
 storage:
   standard_layout: true
