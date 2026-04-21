@@ -9,8 +9,9 @@ import json
 from datetime import datetime
 
 class WorkflowEngine:
-    def __init__(self, resources_root):
+    def __init__(self, resources_root, strict_mode=True):
         self.resources_root = Path(resources_root)
+        self.strict_mode = strict_mode
         self.schemas_root = self.resources_root / "protocols/schemas"
         self.manifest = {
             "timestamp": datetime.now().isoformat(),
@@ -52,7 +53,10 @@ class WorkflowEngine:
         try:
             # Seleccionar todos los archivos .cue del paquete
             all_schemas = list(self.schemas_root.glob("*.cue"))
-            cmd = ["cue", "vet", temp_path] + [str(s) for s in all_schemas]
+            
+            # En modo estricto usamos 'vet'. En modo flexible usamos 'eval' para ignorar incomplete values.
+            action = "vet" if self.strict_mode else "eval"
+            cmd = ["cue", action, temp_path] + [str(s) for s in all_schemas]
             
             if definition_name:
                 cmd.extend(["-d", f"#{definition_name}"])

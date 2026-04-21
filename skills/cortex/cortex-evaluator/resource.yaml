@@ -15,6 +15,11 @@ interfaces:
       evaluate: core/logic/evaluator.py
 storage:
   standard_layout: true
+dependencies:
+  skills:
+  - id: repo-management
+    type: soft
+    reason: Proporciona acceso a logs de git y estados de archivos para auditorías basadas en historial.
 usage_guidelines:
   preferred_scenarios:
   - At the end of every workflow execution to confirm success.

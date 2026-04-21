@@ -31,6 +31,10 @@ dependencies:
   - id: python
     version: '>=3.10'
   packages: []
+  skills:
+  - id: cortex-evaluator
+    type: soft
+    reason: Permite realizar auditorías críticas de seguridad y calidad antes de promocionar cambios al canon.
 usage_guidelines:
   preferred_scenarios:
   - Repository maintenance
