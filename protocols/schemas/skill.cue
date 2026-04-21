@@ -20,6 +20,17 @@ package ecosystem
     input_schema?: string
     output_schema?: string
     
+    dependencies?: {
+        resources?: [...string]
+        system?: [...{ id: string, version?: string }]
+        packages?: [...{ id: string, version?: string }]
+        skills?: [...{
+            id: string
+            type: "hard" | "soft" | *"hard"
+            reason?: string
+        }]
+    }
+    
     storage?: {
         standard_layout: bool
         description?: string

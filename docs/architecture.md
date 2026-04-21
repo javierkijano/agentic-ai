@@ -29,3 +29,10 @@ Es el **Cuerpo** y la **Memoria de Trabajo**.
 
 ## 4. Gestión de Estado (`runtime/`)
 El directorio `runtime/` en el Workspace es el único lugar donde se permite la escritura de logs y persistencia de sesión durante la operación normal. El Canon nunca debe contener una carpeta `runtime/` con datos locales.
+
+## 5. Gestión de Dependencias Inter-Skills
+El sistema soporta una jerarquía de dependencias para asegurar la robustez y fomentar la composición:
+
+- **Hard Dependencies (Duras)**: Relaciones obligatorias. Si la Skill A tiene una dependencia `hard` de la Skill B, el sistema garantiza que ambas deben estar presentes y validadas para la operación.
+- **Soft Dependencies (Blandas)**: Relaciones opcionales y bidireccionales. Permiten que una Skill mejore su comportamiento o delegue capacidades si la dependencia está presente, pero garantiza que la Skill sigue siendo funcional en su ausencia (usando fallbacks internos).
+- **Contrato CUE**: Todas las dependencias deben declararse en el `resource.yaml` y son validadas estructuralmente por el Cortex antes de la ejecución.
