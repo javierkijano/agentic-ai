@@ -165,6 +165,23 @@ class SkillsManager:
             
         return f"## Analysis of Potential Candidates\n\n{t1}\n\n## Overlap & Integration Analysis\n\n{t2}"
 
+    def propose_improvements(self, analysis, target_skill=None):
+        """Appends findings as proposals to the local skills' TODOs.md."""
+        proposals_made = 0
+        for overlap in analysis["overlaps"]:
+            local_skill_id = overlap["local"]
+            if target_skill and local_skill_id != target_skill:
+                continue
+                
+            todos_path = self.repo_root / "resources" / "skills" / local_skill_id / "core" / "docs" / "TODOs.md"
+            if todos_path.exists():
+                proposal = f"\n- [ ] Research Integration: Analyze `{overlap['candidate']}`. Shared concepts: {overlap['shared_concept']}. Goal: {overlap['improvement_potential']}"
+                with open(todos_path, "a", encoding="utf-8") as f:
+                    f.write(proposal)
+                proposals_made += 1
+                
+        return f"Successfully proposed {proposals_made} improvements to local TODOs.md files."
+
     def install_skill(self, provider_name: str, ref: str):
         provider = self.providers.get(provider_name)
         if not provider:

@@ -30,12 +30,21 @@ This document defines the mandatory steps for different types of modifications w
 - [ ] **Redaction**: Remove/Replace the sensitive data.
 - [ ] **Verification**: Re-run validation to ensure the scan passes.
 - [ ] **Root Cause**: If the secret was in a config, ensure `resource.yaml` defines it as a credential requirement instead of hardcoding it.
-
 ### 5. PLATFORM_OVERLAY (Adding support for Hermes, Albert, etc.)
 - [ ] **Structure**: Create `platforms/{{platform_id}}/`.
 - [ ] **Consistency**: Ensure the overlay matches the `core/` logic interface.
 - [ ] **Build**: Run `scripts/build_platform.py --platform {{platform_id}}`.
 - [ ] **Artifact Check**: Inspect the `dist/` output for the specific platform.
+- [ ] **Delivery**: Propose a structured commit to the user.
+
+### 6. RESEARCH & PROPOSAL (Identifying new capabilities or improvements)
+- [ ] **Exploration**: Use `third-party-skills` or web search to find candidates.
+- [ ] **Analysis**: Compare with local skills and identify unique features/overlaps.
+- [ ] **Documentation**: Create an **Implementation Guide** in `core/docs/research/` with technical design.
+- [ ] **Backlog**: Link the guide in the resource's `TODOs.md`.
+- [ ] **Decision**: Ask the user: "Do you want to proceed with this implementation, another proposal, or nothing?"
+- [ ] **Reasoning Check**: If the user wants to proceed, ask: "Should we switch to a more powerful model or increase reasoning capabilities for the implementation phase?"
 
 ## Usage Protocol
 Agents should call `repository-manager` to get the specific checklist for their task before committing any changes.
+

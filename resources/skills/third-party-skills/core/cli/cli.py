@@ -43,6 +43,9 @@ def main():
     elif args.command == "research":
         analysis = manager.research_candidates(" ".join(args.keywords))
         print(manager.format_research_tables(analysis))
+        if args.propose:
+            print("\n--- Proposal Action ---")
+            print(manager.propose_improvements(analysis))
     
     elif args.command == "add":
         print(f"Installing {args.ref} from {args.provider}...")

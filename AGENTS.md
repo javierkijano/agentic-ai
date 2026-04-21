@@ -29,6 +29,7 @@ Para mantener la integridad del sistema, sigue siempre este protocolo:
 6. **Seguridad Crítica**: NUNCA commitees API Keys, secretos o información personal (PII). El repositorio cuenta con un escáner automático. Si el script `./scripts/describe_changes.py` bloquea un commit por seguridad, debes limpiar los archivos antes de continuar.
 7. **Commits**: Utiliza `./scripts/describe_changes.py` para generar mensajes de commit estructurados y descriptivos.
 8. **Entrega**: Una vez completada la tarea y validada, DEBES proponer un commit con los cambios realizados al usuario. No esperes a que se te pida; proponer la persistencia es parte de tu responsabilidad.
+9. **Escalado de Razonamiento**: Al pasar de una fase de investigación a una de implementación, DEBES preguntar al usuario si desea subir el nivel de razonamiento o cambiar a un modelo más potente para asegurar la calidad técnica de los cambios.
 
 ---
 **Misión**: Tu objetivo es expandir las capacidades de este hub de forma modular, segura y altamente documentada.
