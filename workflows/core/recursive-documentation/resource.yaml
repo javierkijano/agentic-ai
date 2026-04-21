@@ -1,0 +1,18 @@
+id: recursive-documentation
+kind: workflow
+status: core
+description: Proceso de documentación recursiva que analiza cambios operativos y dispara actualizaciones específicas.
+utility_score: 100
+
+steps:
+  - id: trace_operational_changes
+    intent: "Analizar el historial de la sesión para identificar qué procesos/skills/workflows han sido modificados o creados"
+    associations: [{tool: repo-management, strength: 1.0}]
+
+  - id: identify_documentation_gaps
+    intent: "Comparar los cambios detectados con el estado actual de los README.md, SKILL.md y AGENTS.md"
+    associations: [{tool: cortex-evaluator, strength: 1.0}]
+
+  - id: dispatch_specific_docs
+    intent: "Disparar el workflow de documentación específica para cada entidad que lo requiera"
+    associations: [{workflow: ecosystem-documentation-sync, strength: 1.0}]

@@ -39,3 +39,9 @@ steps:
     associations:
       - workflow: workflow-evaluation
         strength: 1.0
+
+  - id: recursive_documentation_closure
+    intent: "Garantizar que todos los cambios realizados en el ciclo han sido documentados de forma atómica y recursiva"
+    associations:
+      - workflow: recursive-documentation
+        strength: 1.0
