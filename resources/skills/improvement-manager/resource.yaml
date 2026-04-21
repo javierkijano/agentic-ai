@@ -30,6 +30,7 @@ dependencies:
   resources:
   - repository-manager
   - synergy-finder
+  - third-party-skills
   system:
   - id: python
     version: '>=3.10'

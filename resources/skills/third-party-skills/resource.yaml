@@ -1,0 +1,48 @@
+id: third-party-skills
+kind: skill
+status: active
+description: Bridge to external skill ecosystems (skills.sh, Anthropic GitHub, Hermes Hub, ClawHub). Allows searching, installing, and managing third-party agent skills.
+tags:
+- '#ecosystem'
+- '#external'
+- '#installation'
+- '#anthropic'
+- '#skills.sh'
+- '#hermes'
+- '#clawhub'
+usage_guidelines:
+  preferred_scenarios:
+  - Use when the repository lacks a specific capability.
+  - Use to discover battle-tested skills from skills.sh, Anthropic reference skills, Hermes Hub, or ClawHub.
+  constraints:
+  - Requires internet access to reach external providers.
+  - Requires Node.js and npx installed for skills.sh.
+  antipatterns:
+  - Do not use to install unverified or low-star skills without review.
+platforms:
+- hermes
+- generic
+interfaces:
+  cli:
+    enabled: true
+    commands:
+      find: Search for skills on skills.sh
+      add: Install a skill from the ecosystem
+  webapp:
+    enabled: false
+    port: null
+    entrypoint: app.py
+storage:
+  standard_layout: true
+  description: Standardized runtime storage
+  contract: core/docs/STORAGE.md
+credentials: []
+dependencies:
+  resources: []
+  system:
+  - id: python
+    version: '>=3.10'
+  - id: node
+    version: '>=18'
+  packages: []
+dependents: []
