@@ -1,0 +1,9 @@
+id: update-docs
+kind: workflow
+status: core
+utility_score: 100
+description: "Alias para sincronización de documentación"
+steps:
+  - id: sync
+    intent: "Sincronizar todo el ecosistema"
+    associations: [{workflow: ecosystem-documentation-sync, strength: 1.0}]

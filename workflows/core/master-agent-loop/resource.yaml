@@ -19,6 +19,12 @@ steps:
       - workflow: task-identification
         strength: 1.0
 
+  - id: present_execution_plan
+    intent: "Mostrar al usuario la secuencia de workflows y herramientas que se han planificado para resolver la tarea"
+    associations:
+      - tool: workflow-planner
+        strength: 1.0
+
   - id: execute_best_solution
     intent: "Localizar el workflow que mejor resuelve la tarea identificada y orquestarlo"
     associations:
