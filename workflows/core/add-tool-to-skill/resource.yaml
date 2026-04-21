@@ -1,0 +1,29 @@
+id: add-tool-to-skill
+kind: workflow
+status: core
+description: Añade una nueva capacidad (comando/logic) a una Skill existente siguiendo el estándar industrial.
+utility_score: 100
+
+state_validation:
+  pre_state_schema: "Skill"
+
+steps:
+  - id: prepare_instruction_manifest
+    intent: "Generar el archivo JSON de instrucciones con el nombre de la tool, parámetros y skill destino"
+    validation:
+      output_schema: "InputManifest" # Validación CUE del archivo de entrada
+    associations: [{tool: cortex-planner, strength: 1.0}]
+
+  - id: scaffold_tool_logic
+    intent: "Crear el archivo de lógica (.py) en el core de la skill basándose en el manifiesto"
+    associations: [{tool: repo-management, strength: 1.0}]
+
+  - id: register_tool_interface
+    intent: "Actualizar el resource.yaml de la skill para exponer el nuevo comando"
+    associations: [{tool: repo-management, strength: 1.0}]
+
+  - id: final_integrity_check
+    intent: "Validar que la skill sigue siendo íntegra tras la adición"
+    validation:
+      output_schema: "Skill"
+    associations: [{tool: step-executor, strength: 1.0}]
