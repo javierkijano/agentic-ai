@@ -1,0 +1,48 @@
+id: skills-canon-promotion
+kind: workflow
+status: core
+description: Protocolo oficial para la promoción de una Skill validada al Canon de Recursos.
+
+preconditions:
+  - "La Skill reside en el Workspace o en la carpeta experimental de Recursos"
+  - "El archivo resource.yaml de la Skill es válido y completo"
+  - "No existen conflictos de ID con Skills ya existentes en el Canon"
+
+postconditions:
+  - "La Skill ha sido movida físicamente a la raíz de skills/ del Canon"
+  - "El status de la Skill ha sido actualizado a 'active' o 'core'"
+  - "La Skill es visible para el WorkflowSelector y el Navigator"
+  - "Se ha registrado la promoción en el log de trazabilidad"
+
+steps:
+  - id: integrity_validation
+    intent: "Validar que la Skill cumple con el estándar de estructura y contrato YAML"
+    associations:
+      - tool: repo-management
+        strength: 1.0
+
+  - id: security_vetting
+    intent: "Asegurar que el código no contiene secretos ni vulnerabilidades críticas"
+    associations:
+      - tool: cortex-evaluator
+        strength: 1.0
+      - tool: repo-management
+        strength: 0.5
+
+  - id: physical_promotion
+    intent: "Trasladar los archivos de la Skill al directorio de destino en el Canon"
+    associations:
+      - tool: repo-management
+        strength: 1.0
+
+  - id: documentation_refresh
+    intent: "Regenerar índices de documentación y actualizar manuales de agentes"
+    associations:
+      - workflow: update-docs
+        strength: 1.0
+
+  - id: registry_update
+    intent: "Actualizar el registro global de capacidades del ecosistema"
+    associations:
+      - tool: repo-management
+        strength: 1.0
